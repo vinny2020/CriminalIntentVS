@@ -1,4 +1,4 @@
-package com.xaymaca.criminalintent
+package com.xaymaca.criminalintent.model
 
 import java.util.*
 

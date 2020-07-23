@@ -1,4 +1,4 @@
-package com.xaymaca.criminalintent
+package com.xaymaca.criminalintent.controller
 
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +10,8 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_crime.view.*
+import com.xaymaca.criminalintent.R
+import com.xaymaca.criminalintent.model.Crime
 
 
 class CrimeFragment: Fragment() {
