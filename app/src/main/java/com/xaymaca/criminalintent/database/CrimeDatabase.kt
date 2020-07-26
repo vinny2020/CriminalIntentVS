@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.xaymaca.criminalintent.model.Crime
 
-@Database(entities = [Crime::class],version = 1)
+@Database(entities = [Crime::class],version = 1, exportSchema = true)
 @TypeConverters(CrimeTypeConverters::class)
 abstract class CrimeDatabase: RoomDatabase() {
     abstract fun crimeDAO(): CrimeDAO
