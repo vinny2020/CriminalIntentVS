@@ -2,9 +2,14 @@ package com.xaymaca.criminalintent.controller
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.xaymaca.criminalintent.R
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+private const val TAG = "MainActivity"
+
+
+class MainActivity : AppCompatActivity() , CrimeListFragment.Callbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,5 +25,14 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onCrimeSelected(crimeid: UUID) {
+      val fragment = CrimeFragment.newInstance(crimeid)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container,fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
