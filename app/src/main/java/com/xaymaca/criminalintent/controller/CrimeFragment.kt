@@ -98,7 +98,6 @@ class CrimeFragment : Fragment() {
                 count: Int,
                 after: Int
             ) {
-                //TODO("Not yet implemented")
             }
 
 
@@ -112,7 +111,6 @@ class CrimeFragment : Fragment() {
             }
 
             override fun afterTextChanged(sequence: Editable?) {
-               // TODO("Not yet implemented")
             }
         }
         titleField.addTextChangedListener(titleWatcher)
