@@ -31,7 +31,7 @@ class CrimeListFragment: Fragment() {
      */
 
     interface Callbacks {
-        fun onCrimeSelected(crimeid: UUID)
+        fun onCrimeSelected(crimeId: UUID)
     }
 
     private var callbacks: Callbacks? = null
