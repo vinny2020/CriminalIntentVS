@@ -14,7 +14,10 @@ class CrimeRepository private constructor(context: Context) {
 
 
     private val database: CrimeDatabase = Room.databaseBuilder(
-        context.applicationContext, CrimeDatabase::class.java, DATABASE_NAME)
+        context.applicationContext,
+        CrimeDatabase::class.java,
+        DATABASE_NAME)
+        .addMigrations(migration_1_2)
         .build()
 
     private val crimeDao = database.crimeDAO()

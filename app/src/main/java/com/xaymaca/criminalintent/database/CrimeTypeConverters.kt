@@ -7,7 +7,7 @@ import java.util.*
 class CrimeTypeConverters {
     @TypeConverter
     fun fromDFate(date: Date) : Long? {
-        return date?.time
+        return date.time
     }
 
     @TypeConverter

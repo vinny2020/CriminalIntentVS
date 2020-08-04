@@ -4,9 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -76,6 +74,26 @@ class CrimeListFragment : Fragment() {
         )
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_crime_list, menu)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.new_crime -> {
+                val crime = Crime()
+                crimeListViewModel.addCrime(crime)
+                callbacks?.onCrimeSelected(crime.id)
+                true
+            }
+            else -> {
+                return super.onOptionsItemSelected(item)
+            }
+        }
+    }
+
     override fun onDetach() {
         super.onDetach()
         callbacks = null
@@ -100,7 +118,6 @@ class CrimeListFragment : Fragment() {
             this.crime = crime
             titleTextView.text = this.crime.title
 
-
             dateTextView.text = DateFormat.format("EEEE, MMMM dd, yyyy", this.crime.date)
 
             solvedImageView.visibility = if (crime.isSolved) {
@@ -115,9 +132,12 @@ class CrimeListFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     private inner class CrimeAdapter : ListAdapter<Crime, CrimeHolder>(DiffCallback()) {
-
-
         override fun onBindViewHolder(holder: CrimeHolder, position: Int) {
             holder.bind(getItem(position))
         }
@@ -126,8 +146,6 @@ class CrimeListFragment : Fragment() {
             val view = layoutInflater.inflate(R.layout.list_item_crime, parent, false)
             return CrimeHolder(view)
         }
-
-
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Crime>() {
@@ -138,16 +156,11 @@ class CrimeListFragment : Fragment() {
         override fun areContentsTheSame(oldItem: Crime, newItem: Crime): Boolean {
             return oldItem == newItem
         }
-
-
     }
-
 
     companion object {
         fun newInstance(): CrimeListFragment {
             return CrimeListFragment()
         }
     }
-
-
 }
